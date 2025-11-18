@@ -1,6 +1,6 @@
 [![Agile611](https://www.agile611.com/wp-content/uploads/2020/09/cropped-logo-header.png)](http://www.agile611.com/)
 
-# Agile611 AWX Demo 
+# Agile611 AWX 24.6.1 AWX Operator 2.19.1 
 
 This repository contains the installation from AWX from . It uses Vagrant.
 
