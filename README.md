@@ -18,13 +18,14 @@ git clone https://www.github.com/agile611/startusingawx.git
 
 ## Initial configuration
 
-* Start environment, we are going to need 4 ubuntu boxes (Ansible, Alfa, Bravo, Charlie)
+* Start environment
 
 ```shell
 vagrant up 
 vagrant ssh awx
 ```
 
+* Follow the script ansible_awx_install.txt to install AWX 2.19.1
 
 ## Support
 
