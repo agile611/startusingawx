@@ -56,7 +56,7 @@ Vagrant.configure("2") do |config|
 
   # ─── AWX ───────────────────────────────────────────────
   config.vm.define "awx" do |awx|
-    awx.vm.box      = "bento/debian-13" # Using Debian
+    awx.vm.box      = "bento/ubuntu-26.04" # Using Debian
     awx.vm.network "private_network", ip: "192.168.11.50"
     awx.vm.hostname = "awx"
     awx.vm.network "forwarded_port", guest: 32000, host: 32000
