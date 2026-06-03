@@ -2,14 +2,13 @@ Vagrant.configure("2") do |config|
 
   config.vm.boot_timeout = 900
 
-  # ─── ANSIBLE ───────────────────────────────────────────
-  config.vm.define "ansible" do |ansible|
-    ansible.vm.box      = "bento/debian-13" # Using Debian
-    ansible.vm.hostname = "ansible"
-    ansible.vm.network "private_network", ip: "192.168.11.10"
-    ansible.vm.synced_folder ".", "/vagrant", type: "rsync"
-    ansible.vm.provision :shell, :path => "ansible.sh"
-    ansible.vm.provider "virtualbox" do |vb| # Changed to VirtualBox
+  # ─── CONTROL ───────────────────────────────────────────
+  config.vm.define "control" do |control|
+    control.vm.box      = "bento/debian-13" # Using Debian
+    control.vm.hostname = "control"
+    control.vm.network "private_network", ip: "192.168.11.10"
+    control.vm.synced_folder ".", "/vagrant", type: "rsync"
+    control.vm.provider "virtualbox" do |vb| # Changed to VirtualBox
       vb.memory        = 512
       vb.cpus          = 1
     end
@@ -60,6 +59,7 @@ Vagrant.configure("2") do |config|
     awx.vm.network "private_network", ip: "192.168.11.50"
     awx.vm.hostname = "awx"
     awx.vm.network "forwarded_port", guest: 32000, host: 32000
+    awx.vm.provision :shell, :path => "setup-awx.sh"
     awx.vm.provider "virtualbox" do |vb| # Changed to VirtualBox
       vb.memory = 16384
       vb.cpus = 4
