@@ -17,6 +17,9 @@ log()   { echo -e "${GREEN}[INFO]${NC} $1"; }
 warn()  { echo -e "${YELLOW}[WARN]${NC} $1"; }
 error() { echo -e "${RED}[ERROR]${NC} $1"; exit 1; }
 
+# ✅ Capture start time
+START_TIME=$SECONDS
+
 # =============================================================
 # == 1. Update Your System ==
 # =============================================================
@@ -222,6 +225,12 @@ ADMIN_PASSWORD=$(kubectl get secret awx-demo-admin-password \
 # =============================================================
 # == DONE — Summary ==
 # =============================================================
+
+# ✅ Calculate elapsed time
+ELAPSED=$(( SECONDS - START_TIME ))
+ELAPSED_MIN=$(( ELAPSED / 60 ))
+ELAPSED_SEC=$(( ELAPSED % 60 ))
+
 echo ""
 echo -e "${GREEN}=============================================${NC}"
 echo -e "${GREEN}  ✅  AWX Setup Complete!${NC}"
@@ -231,5 +240,7 @@ SERVER_IP=$(hostname -I | awk '{print $1}')
 echo -e "  🌐 Dashboard URL : ${YELLOW}http://${SERVER_IP}:32000${NC}"
 echo -e "  👤 Username      : ${YELLOW}admin${NC}"
 echo -e "  🔑 Password      : ${YELLOW}${ADMIN_PASSWORD}${NC}"
+echo ""
+echo -e "  ⏱️  Total time    : ${YELLOW}${ELAPSED_MIN}m ${ELAPSED_SEC}s${NC}"
 echo ""
 echo -e "${GREEN}=============================================${NC}"
